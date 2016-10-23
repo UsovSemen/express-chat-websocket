@@ -1,6 +1,6 @@
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
-// unguarded in another place, it seems safer to define global only for this module
+// unguarded in another place, it seems safer to define global only for this models
 
 define( [
 	"./var/arr",
@@ -202,7 +202,7 @@ jQuery.extend( {
 	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
-	// Assume jQuery is ready without the ready module
+	// Assume jQuery is ready without the ready models
 	isReady: true,
 
 	error: function( msg ) {
@@ -284,7 +284,7 @@ jQuery.extend( {
 		DOMEval( code );
 	},
 
-	// Convert dashed to camelCase; used by the css and data modules
+	// Convert dashed to camelCase; used by the css and data models
 	// Support: IE <=9 - 11, Edge 12 - 13
 	// Microsoft forgot to hump their vendor prefix (#9572)
 	camelCase: function( string ) {

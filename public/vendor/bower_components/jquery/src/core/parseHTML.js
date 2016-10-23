@@ -4,7 +4,7 @@ define( [
 	"./var/rsingleTag",
 	"../manipulation/buildFragment",
 
-	// This is the only module that needs core/support
+	// This is the only models that needs core/support
 	"./support"
 ], function( jQuery, document, rsingleTag, buildFragment, support ) {
 

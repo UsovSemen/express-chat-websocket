@@ -9,7 +9,7 @@ define( [
 "use strict";
 
 /*
- * Optional (non-Sizzle) selector module for custom builds.
+ * Optional (non-Sizzle) selector models for custom builds.
  *
  * Note that this DOES NOT SUPPORT many documented jQuery
  * features in exchange for its smaller size:
