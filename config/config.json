@@ -1,0 +1,17 @@
+{
+  "mongoose": {
+    "uri": "mongodb://localhost:27017/chat",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      },
+      "replset": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  }
+}
