@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var session = require('express-session');
+var mongoose = require('mongoose');
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var login = require('./routes/login');
-var users = require('./routes/users');
-
+var index = require('./routes/index');
 var app = express();
 
 // view engine setup
@@ -23,9 +24,63 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', login);
 
-app.use('/users', users);
+var MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+    secret: 'SECRET'
+ //   store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+var User = require('./models/user').User;
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    console.log(user);
+    done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+passport.use(new LocalStrategy({
+        usernameField: 'login',
+        passwordField: 'password'
+    },
+    function(login, password, done) {
+        User.findOne({ login: login }, function(err, user) {
+            console.log(err, user);
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        });
+    }
+));
+
+
+app.use('/login', login);
+
+app.use(function (req, res, next) {
+    console.log(req.user);
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+});
+
+app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
