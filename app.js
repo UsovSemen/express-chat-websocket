@@ -5,8 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var mongoose = require('mongoose');
+
+var mongse = require('./setup/mongoose');
+
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+
+
 var login = require('./routes/login');
 var index = require('./routes/index');
 var app = express();
@@ -25,11 +29,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 var MongoStore = require('connect-mongo')(session);
 
 app.use(session({
-    secret: 'SECRET'
- //   store: new MongoStore({ mongooseConnection: mongoose.connection })
+    secret: 'SECRET',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongse.connection })
 }));
 
 var User = require('./models/user').User;
@@ -38,7 +45,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
-    console.log(user);
     done(null, user._id);
 });
 
@@ -54,7 +60,6 @@ passport.use(new LocalStrategy({
     },
     function(login, password, done) {
         User.findOne({ login: login }, function(err, user) {
-            console.log(err, user);
             if (err) { return done(err); }
             if (!user) {
                 return done(null, false, { message: 'Incorrect username.' });
@@ -71,7 +76,6 @@ passport.use(new LocalStrategy({
 app.use('/login', login);
 
 app.use(function (req, res, next) {
-    console.log(req.user);
     if (req.user) {
         next();
     } else {

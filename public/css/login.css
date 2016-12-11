@@ -9,8 +9,7 @@ body {
 }
 .panel-login>.panel-heading {
     color: #00415d;
-    background-color: #fff;
-    border-color: #fff;
+    //border-color: #fff;
     text-align:center;
 }
 .panel-login>.panel-heading a{

@@ -1,5 +1,57 @@
 extends template/layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    body
+    div.container
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+                        span.sr-only Toggle navigation
+                        span.icon-next
+                        span.icon-next
+                        span.icon-next
+                    a.navbar-brand(href="#") Brand
+                div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+                    button(type="button" class="btn btn-default navbar-right") Sign out
+                    p.navbar-text.navbar-right Sighed in as Usov Semne
+        div.row
+            div.col-sm-4.col-md-4
+                div.sidebar
+                    div.mini-submenu
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    div.list-group
+                        span(href="#" class="list-group-item active") List of dialog
+                            span(class="pull-right" id="slide-submenu")
+                                i.fa.fa-times
+                        a(href="#" class="list-group-item")
+                            i.fa Group 1
+                        a(href="#" class="list-group-item")
+                            i.fa Group 2
+                            span.badge 14
+                        a(href="#" class="list-group-item")
+                            i.fa Group 3
+            div.col-sm-8.col-md-8
+                div.panel.panel-primary
+                        div.panel-heading
+                            h3.panel-title Panel primary
+                        div.panel-body
+                            p.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                 Nullam a mi efficitur, dictum nisl et, dapibus urna. Nam faucibus, justo nec viverra vehicula,
+                                 lectus felis rhoncus risus, sed vehicula leo magna ut erat. Vestibulum molestie commodo metus
+                                  a cursus. Nulla quis facilisis odio, a molestie mi. Vivamus justo felis, tempus id magna
+                                  fermentum, aliquet convallis tortor. Aliquam ut turpis vitae ante auctor sagittis quis id urna.
+                                  Suspendisse ut pellentesque est. Aliquam fermentum facilisis nisl id semper. Donec nisi velit, pellentesque non diam ut, tempor
+                                  convallis velit. Etiam malesuada ultricies odio eget efficitur. Fusce fermentum massa vitae elit tincidunt pretium. Quisque mattis
+                                  venenatis mauris, vitae interdum neque auctor in. Maecenas in dolor sagittis, vehicula mauris vel, euismod quam. In blandit eros et
+                                  metus porttitor, id lobortis metus laoreet.
+                            p.
+                                Donec fringilla blandit mauris sit amet consectetur.
+                                 Ut facilisis metus a velit mollis convallis. Duis a libero nunc.
+                                 Praesent in ante fermentum massa sodales dignissim quis non odio. Ut at lacus mattis,
+                                  venenatis arcu sit amet, molestie enim. Vivamus ac arcu vel mi molestie consequat. Duis auctor malesuada lobortis.
+                                   Nulla vestibulum eros risus. Curabitur ligula massa, lobortis ut suscipit vel, sodales et augue. Nulla sit amet tincidunt
+                                    odio.
